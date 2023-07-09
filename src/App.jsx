@@ -1,12 +1,34 @@
-import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { data } from './data/data'
+import ContinentPage from './ContinentPage'
+import CountryPage from './CountryPage'
+import DestinationListPage from './DestinationListPage'
+import DestinationDetailPage from './DestinationDetailPage'
 
-const App = () => {
+function App() {
   return (
-    <div className="flex items-center justify-center h-screen ">
-      <div className="text-4xl text-center">
-        <p>Simple Trip Advisor 🚀</p>
+    <Router>
+      <div className="min-h-screen text-white bg-gray-700">
+        <Routes>
+          <Route
+            path="/"
+            element={<ContinentPage continents={data.continents} />}
+          />
+          <Route
+            path="/:continent"
+            element={<CountryPage continents={data.continents} />}
+          />
+          <Route
+            path="/:continent/:country"
+            element={<DestinationListPage continents={data.continents} />}
+          />
+          <Route
+            path="/:continent/:country/:destination"
+            element={<DestinationDetailPage continents={data.continents} />}
+          />
+        </Routes>
       </div>
-    </div>
+    </Router>
   )
 }
 
